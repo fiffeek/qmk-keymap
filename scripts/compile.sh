@@ -1,3 +1,3 @@
 #!/bin/bash
 
-qmk flash -kb zsa/voyager -km colemak
+qmk compile -kb zsa/voyager -km colemak
