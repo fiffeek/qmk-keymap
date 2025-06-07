@@ -1,5 +1,6 @@
 #include "config.h"
 #include "keycodes.h"
+#include "modifiers.h"
 #include QMK_KEYBOARD_H
 #include "../../../../../features/achordion.h"
 #include "voyager.h"
@@ -24,7 +25,7 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    KC_NO,          KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_NO,
+    TG(5),          KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_NO,
     CW_TOGG,        KC_Q,           KC_W,           KC_F,           KC_P,           KC_B,                                           KC_J,           KC_L,           KC_U,           KC_Y,           KC_UNDS,        KC_SCLN,
     KC_ESCAPE,      HOME_A,         HOME_R,         HOME_S,         HOME_T,         KC_G,                                           KC_M,           HOME_N,         HOME_E,         HOME_I,         HOME_O,         KC_QUOTE,
     KC_NO,          KC_Z,           KC_X,           KC_C,           KC_D,           KC_V,                                           KC_K,           KC_H,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_NO,
@@ -57,6 +58,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,  KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_TRANSPARENT,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
+  ),
+  [5] = LAYOUT_voyager(
+    TG(5), KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, QK_BOOT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_Q, KC_W, KC_W, KC_E,                                 KC_TRANSPARENT, KC_BRIGHTNESS_DOWN,KC_TRANSPARENT, KC_TRANSPARENT, KC_BRIGHTNESS_UP,KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_LEFT_CTRL, KC_A, KC_S, KC_D, KC_F,                                 KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_Z, KC_X, KC_C, KC_V,                                 KC_TRANSPARENT, KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,  KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_TRANSPARENT,
+                                                    KC_LEFT_SHIFT, KC_TAB,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
 };
 // clang-format on
@@ -93,6 +101,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
 
     [4] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {21, 204, 255}, {21, 204, 255}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {245, 255, 255}, {0, 0, 0}, {21, 204, 255}, {0, 0, 0}, {0, 0, 0}, {21, 204, 255}, {0, 0, 0}, {0, 0, 0}, {21, 204, 255}, {21, 204, 255}, {21, 204, 255}, {21, 204, 255}, {0, 0, 0}, {0, 0, 0}, {21, 204, 255}, {21, 204, 255}, {21, 204, 255}, {21, 204, 255}, {0, 0, 0}, {21, 204, 255}, {21, 204, 255}},
 
+    [5] = {{245, 100, 100}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {5, 105, 255}, {5, 105, 255}, {5, 105, 255}, {5, 105, 255}, {245, 195, 249}, {0, 0, 0}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {5, 105, 255}, {5, 105, 255}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {5, 105, 255}, {5, 105, 255}, {5, 105, 255}, {5, 105, 255}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {245, 195, 249}, {0, 0, 0}, {5, 105, 255}, {5, 105, 255}},
 };
 
 void set_layer_color(int layer) {
@@ -131,6 +140,9 @@ bool rgb_matrix_indicators_user(void) {
             break;
         case 4:
             set_layer_color(4);
+            break;
+        case 5:
+            set_layer_color(5);
             break;
         default:
             if (rgb_matrix_get_flags() == LED_FLAG_NONE) rgb_matrix_set_color_all(0, 0, 0);
