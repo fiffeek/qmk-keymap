@@ -58,6 +58,7 @@ class LedLayer:
             len(led_list) == expected_length
         ), f"len is {len(led_list)} but expected is {expected_length}"
         piece.append(led_list)
+        assert len(piece) <= self.REGULAR_ROW_COUNT + 1
 
     def to_list(self):
         return flatten(flatten([self.left, self.right]))
