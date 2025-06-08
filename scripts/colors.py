@@ -14,9 +14,9 @@ COLORS_LINE = "PROGMEM ledmap"
 
 @dataclass
 class LedColor:
-    red: int
-    green: int
-    blue: int
+    h: int
+    s: int
+    v: int
 
 
 EMPTY_LED = LedColor(0, 0, 0)
@@ -28,6 +28,8 @@ PINK_LED = LedColor(245, 195, 249)
 LIGHT_PINK_LED = LedColor(5, 105, 255)
 YELLOW_LED = LedColor(21, 204, 255)
 BRIGHT_PINK_LED = LedColor(245, 255, 255)
+LIME_LED = LedColor(120, 220, 221)
+TEAL_LED = LedColor(168, 99, 99)
 
 
 class Hand(Enum):
@@ -83,7 +85,7 @@ def override_leds(filepath: str, index: int, layout: List[LedLayer]):
         for layer_index, layer in enumerate([layer.to_list() for layer in layout]):
             line = f"    [{layer_index}] = " + "{"
             for idx, led in enumerate(layer):
-                line += "{" + f"{led.red}, {led.green}, {led.blue}" + "}"
+                line += "{" + f"{led.h}, {led.s}, {led.v}" + "}"
                 line += ", " if idx != (len(layer) - 1) else ""
             line += "},\n"
             lines[index + layer_index] = line
@@ -96,15 +98,15 @@ def main(filepath: str):
     index = find_ledmap_start(filepath)
     top = LedLayer()
     top.add_row(Hand.LEFT, [[EMPTY_LED] * 6])
-    top.add_row(Hand.LEFT, [[PINK_LED] * 6])
-    top.add_row(Hand.LEFT, [[PINK_LED], [LIGHT_PINK_LED] * 4, [PINK_LED]])
-    top.add_row(Hand.LEFT, [[EMPTY_LED], [PINK_LED] * 5])
-    top.add_row(Hand.LEFT, [[LIGHT_PINK_LED] * 2])
+    top.add_row(Hand.LEFT, [[LIME_LED] * 6])
+    top.add_row(Hand.LEFT, [[LIME_LED], [TEAL_LED] * 4, [LIME_LED]])
+    top.add_row(Hand.LEFT, [[EMPTY_LED], [LIME_LED] * 5])
+    top.add_row(Hand.LEFT, [[TEAL_LED] * 2])
     top.add_row(Hand.RIGHT, [[EMPTY_LED] * 6])
-    top.add_row(Hand.RIGHT, [[PINK_LED] * 6])
-    top.add_row(Hand.RIGHT, [[PINK_LED], [LIGHT_PINK_LED] * 4, [PINK_LED]])
-    top.add_row(Hand.RIGHT, [[PINK_LED] * 5, [EMPTY_LED]])
-    top.add_row(Hand.RIGHT, [[LIGHT_PINK_LED] * 2])
+    top.add_row(Hand.RIGHT, [[LIME_LED] * 6])
+    top.add_row(Hand.RIGHT, [[LIME_LED], [TEAL_LED] * 4, [LIME_LED]])
+    top.add_row(Hand.RIGHT, [[LIME_LED] * 5, [EMPTY_LED]])
+    top.add_row(Hand.RIGHT, [[TEAL_LED] * 2])
 
     sym = LedLayer()
     sym.add_row(Hand.LEFT, [[EMPTY_LED] * 6])
